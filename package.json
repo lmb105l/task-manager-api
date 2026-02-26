@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx src/app.ts",
-    "start": "tsx src/app.ts"
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "preview": "tsx src/app.ts"
   },
   "type": "commonjs",
   "dependencies": {
