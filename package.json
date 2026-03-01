@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx src/app.ts",
-    "build": "tsc",
-    "start": "node dist/app.js",
-    "preview": "tsx src/app.ts"
+  "dev": "tsx src/app.ts",
+  "build": "echo \"no build step\"",
+  "start": "tsx src/app.ts"
+}
+
   },
   "type": "commonjs",
   "dependencies": {
