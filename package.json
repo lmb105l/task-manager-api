@@ -7,8 +7,9 @@
   },
   "scripts": {
     "dev": "tsx src/app.ts",
-    "build": "chmod +x node_modules/.bin/* || true && prisma generate && tsc",
-    "start": "node dist/app.js"
+    "build": "tsc",
+    "start": "node dist/app.js",
+    "postinstall": "chmod +x node_modules/.bin/* || true && npx prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
