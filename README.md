@@ -1,6 +1,6 @@
 # Task Manager API
 
-REST API для управления задачами с аутентификацией JWT. Node.js + TypeScript + Express + Prisma + SQLite.
+REST API для управления задачами с аутентификацией JWT. Node.js + TypeScript + Express + Prisma + PostgreSQL.
 
 ## Архитектура
 
@@ -9,7 +9,7 @@ graph TB
     A[Client] --> B[Express Server]
     B --> C[JWT Middleware]
     B --> D[Prisma Client]
-    D --> E[SQLite Database]
+    D --> E[PostgreSQL Database]
     C --> F[User Auth]
     D --> G[Task CRUD]
 ```
@@ -26,27 +26,67 @@ graph TB
 | DELETE | /tasks/:id | Удалить задачу | JWT |
 | GET | /health | Проверка здоровья | Нет |
 
+## Переменные окружения
+
+Создайте `.env` файл в корне проекта:
+
+```env
+# Database
+DATABASE_URL="postgresql://neondb_owner:npg_pxB6tdNQ8vZL@ep-silent-block-aihtgoxa-pooler.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require"
+
+# Server
+PORT=3000
+
+# JWT
+JWT_SECRET="your-super-secret-jwt-key-change-this-in-production"
+JWT_EXPIRY="7d"
+```
+
+### Формат DATABASE_URL для Neon PostgreSQL:
+```
+postgresql://[username]:[password]@[host]/[database]?sslmode=require&channel_binding=require
+```
+
+Где:
+- `username`: имя пользователя базы данных (neondb_owner)
+- `password`: пароль базы данных
+- `host`: хост сервера Neon
+- `database`: имя базы данных (neondb)
+- `sslmode=require`: обязательное SSL соединение
+- `channel_binding=require`: дополнительная безопасность
+
 ## Метрики (Day 1)
 
 - ✅ 5 CRUD операций работают
 - ✅ JWT аутентификация
-- ✅ SQLite база данных
+- ✅ PostgreSQL база данных (Neon)
 - ✅ Docker контейнеризация
 - ✅ GitHub Actions CI/CD
+- ✅ Vercel deployment
 
 ## Установка
 
 1. Клонировать репозиторий
 2. `npm install`
-3. `npx prisma generate`
-4. `npx prisma migrate dev --name init`
-5. `npm run dev`
+3. Настроить `.env` файл (см. выше)
+4. `npx prisma generate`
+5. `npx prisma migrate dev --name init`
+6. `npm run dev`
 
 ## Docker
 
 ```bash
 docker-compose up --build
 ```
+
+## Деплой на Vercel
+
+1. Подключить GitHub репозиторий к Vercel
+2. Добавить Environment Variables в Vercel Dashboard:
+   - `DATABASE_URL`
+   - `JWT_SECRET`
+   - `JWT_EXPIRY`
+3. Деплой запустится автоматически
 
 ## Тестирование
 
