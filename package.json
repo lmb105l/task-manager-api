@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "tsx src/app.ts",
-    "build": "node node_modules/prisma/bin/prisma.js generate && tsc",
+    "build": "chmod +x node_modules/.bin/* && prisma generate && tsc",
     "start": "node dist/app.js"
   },
   "dependencies": {
