@@ -1,6 +1,6 @@
 # Task Manager API
 
-REST API для управления задачами с аутентификацией JWT. Node.js + TypeScript + Express + Prisma + PostgreSQL.
+REST API для управления задачами с аутентификацией JWT. Node.js + TypeScript + Express + Prisma v4 + PostgreSQL.
 
 ## Архитектура
 
